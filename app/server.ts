@@ -1,3 +1,6 @@
+/** dotenv */
+import 'dotenv/config'
+
 /** express */
 import express, { json } from 'express'
 
@@ -9,4 +12,6 @@ const app = express()
 app.use(json())
 app.use(cors())
 
-app.listen(3000, () => console.log('app running in port 3000'))
+app.listen(process.env.PORT_APP_MAMBOO || 3001, () =>
+  console.log(`app running in port 3000 ${process.env.PORT_APP_MAMBOO} 🚀🚀🚀`)
+)
