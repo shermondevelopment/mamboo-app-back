@@ -13,5 +13,5 @@ app.use(json())
 app.use(cors())
 
 app.listen(process.env.PORT_APP_MAMBOO || 3001, () =>
-  console.log(`app running in port 3000 ${process.env.PORT_APP_MAMBOO} 🚀🚀🚀`)
+  console.log(`app running in port ${process.env.PORT_APP_MAMBOO} 🚀🚀🚀`)
 )
