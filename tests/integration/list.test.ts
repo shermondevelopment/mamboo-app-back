@@ -48,7 +48,7 @@ describe('List', () => {
     const response = await supertest(app).get('/get/list')
     expect(response.statusCode).toBe(200)
   })
-  it('Should call router /update/list with id who exist and receive status 204', async () => {
+  it('Should call router /update/list with id who exist and receive status 200', async () => {
     const createList = await createListFactory()
     const response = await supertest(app)
       .put(`/update/list/${createList._id}`)
@@ -56,5 +56,14 @@ describe('List', () => {
         title: 'mockNewTitle'
       })
     expect(response.statusCode).toBe(200)
+  })
+  it('Should call router /update/list with title empty and receive status 422', async () => {
+    const createList = await createListFactory()
+    const response = await supertest(app)
+      .put(`/update/list/${createList._id}`)
+      .send({
+        title: ''
+      })
+    expect(response.statusCode).toBe(422)
   })
 })
