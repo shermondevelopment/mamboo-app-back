@@ -13,14 +13,18 @@ import cors from 'cors'
 /** routers */
 import routers from './routers'
 
+/** connection with db */
+import connectWithMongoDb from './db/connect'
+
+/** middleware */
+import errorHandle from './middlewares/errorHandle'
+
 /** server */
 const app = express()
 app.use(json())
 app.use(cors())
 app.use(routers)
-
-/** connection with db */
-import connectWithMongoDb from './db/connect'
+app.use(errorHandle)
 
 connectWithMongoDb
   .then(() => {
