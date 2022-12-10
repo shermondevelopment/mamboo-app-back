@@ -3,7 +3,8 @@ import { Router } from 'express'
 /** controllers */
 import {
   newListController,
-  updateListController
+  updateListController,
+  deleteListController
 } from '../controllers/listController'
 
 /** middleware */
@@ -21,5 +22,6 @@ listRouter.put(
   bodyValidatory(listValidator),
   updateListController
 )
+listRouter.delete('/delete/list/:id', deleteListController)
 
 export default listRouter

@@ -1,7 +1,8 @@
 import {
   addNewListRepository,
   updateListRepository,
-  findListRepostiory
+  findListRepostiory,
+  deleteListRepository
 } from '../repositories/listRepository'
 
 /** utils */
@@ -19,4 +20,14 @@ export const updateListService = async (idOfList: string, title: string) => {
   }
 
   await updateListRepository(idOfList, title)
+}
+
+export const deleteListService = async (idOfList: string) => {
+  const listExist = findListRepostiory(idOfList)
+
+  if (!listExist) {
+    AppError(404, 'list not exists')
+  }
+
+  await deleteListRepository(idOfList)
 }

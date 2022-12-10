@@ -12,3 +12,7 @@ export const updateListRepository = async (idOfList: string, title: string) => {
 export const findListRepostiory = async (idOfList: string) => {
   return await ListSchema.findOne({ _id: idOfList })
 }
+
+export const deleteListRepository = async (idOfList: string) => {
+  await ListSchema.deleteOne({ _id: idOfList })
+}
