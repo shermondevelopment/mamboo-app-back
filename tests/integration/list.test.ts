@@ -36,4 +36,11 @@ describe('List', () => {
     })
     expect(response.statusCode).toBe(422)
   })
+  it('Should call router /new/list with title other than a string and receive status 422', async () => {
+    const response = await supertest(app).post('/new/list').send({
+      title: 1
+    })
+    expect(response.statusCode).toBe(422)
+    expect(response.body).toEqual({ error: 'title must be a string' })
+  })
 })
