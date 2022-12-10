@@ -43,4 +43,8 @@ describe('List', () => {
     expect(response.statusCode).toBe(422)
     expect(response.body).toEqual({ error: 'title must be a string' })
   })
+  it('Should call router /get/list to get all list and receive status code 200', async () => {
+    const response = await supertest(app).get('/get/list')
+    expect(response.statusCode).toBe(200)
+  })
 })
