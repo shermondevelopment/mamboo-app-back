@@ -7,10 +7,14 @@ import express, { json } from 'express'
 /** cors */
 import cors from 'cors'
 
+/** routers */
+import routers from './routers'
+
 /** server */
 const app = express()
 app.use(json())
 app.use(cors())
+app.use(routers)
 
 /** connection with db */
 import connectWithMongoDb from './db/connect'
