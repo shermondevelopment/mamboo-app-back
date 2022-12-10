@@ -1,6 +1,9 @@
 /** dotenv */
 import 'dotenv/config'
 
+/** library to handle errors async */
+import 'express-async-errors'
+
 /** express */
 import express, { json } from 'express'
 
