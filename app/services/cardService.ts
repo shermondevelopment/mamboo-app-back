@@ -2,9 +2,13 @@
 import {
   addNewCardRepository,
   findCardRepository,
-  updateCardRepository
+  updateCardRepository,
+  findCardToListId
 } from '../repositories/cardRepository'
-import { findListRepostiory } from '../repositories/listRepository'
+import {
+  findListRepostiory,
+  getListRepository
+} from '../repositories/listRepository'
 
 /** utils */
 import AppError from '../utils/appError'
@@ -37,4 +41,21 @@ export const updateCardService = async (
   }
 
   await updateCardRepository(content, list_id, position_card, id)
+}
+
+export const getCardService = async () => {
+  const list = await getListRepository()
+
+  const listWithCards = []
+
+  for (let i = 0; i < list.length; i++) {
+    const findCard = await findCardToListId(list[i]._id)
+    listWithCards.push({
+      _id: list[i]._id,
+      title: list[i].title,
+      cards: findCard
+    })
+  }
+
+  return listWithCards
 }

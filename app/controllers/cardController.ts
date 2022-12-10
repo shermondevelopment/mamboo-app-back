@@ -1,7 +1,11 @@
 import { Request, Response } from 'express'
 
 /** services */
-import { newCardService, updateCardService } from '../services/cardService'
+import {
+  newCardService,
+  updateCardService,
+  getCardService
+} from '../services/cardService'
 
 export const newCardController = async (req: Request, res: Response) => {
   const { content, list_id } = req.body
@@ -18,4 +22,9 @@ export const updateCardController = async (req: Request, res: Response) => {
   await updateCardService(content, list_id, position_card, id)
 
   res.sendStatus(200)
+}
+
+export const listCardController = async (req: Request, res: Response) => {
+  const cards = await getCardService()
+  res.status(200).json(cards)
 }

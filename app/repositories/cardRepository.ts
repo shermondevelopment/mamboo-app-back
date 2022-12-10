@@ -22,3 +22,7 @@ export const updateCardRepository = async (
     { content, list_id, position_card }
   )
 }
+
+export const findCardToListId = async (list_id: string) => {
+  return await cardSchema.find({ list_id })
+}

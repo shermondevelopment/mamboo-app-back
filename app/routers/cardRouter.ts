@@ -3,7 +3,8 @@ import { Router } from 'express'
 /** controller */
 import {
   newCardController,
-  updateCardController
+  updateCardController,
+  listCardController
 } from '../controllers/cardController'
 
 /** middleware */
@@ -23,5 +24,6 @@ cardRouter.put(
   bodyValidatory(cardUpdateValidation),
   updateCardController
 )
+cardRouter.get('/cards', listCardController)
 
 export default cardRouter
