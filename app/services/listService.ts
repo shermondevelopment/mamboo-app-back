@@ -1,5 +1,22 @@
-import { addNewListRepository } from '../repositories/listRepository'
+import {
+  addNewListRepository,
+  updateListRepository,
+  findListRepostiory
+} from '../repositories/listRepository'
+
+/** utils */
+import AppError from '../utils/appError'
 
 export const newListService = async (title: string) => {
   await addNewListRepository(title)
+}
+
+export const updateListService = async (idOfList: string, title: string) => {
+  const listExist = findListRepostiory(idOfList)
+
+  if (!listExist) {
+    AppError(404, 'list not exists')
+  }
+
+  await updateListRepository(idOfList, title)
 }

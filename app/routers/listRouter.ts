@@ -1,7 +1,10 @@
 import { Router } from 'express'
 
 /** controllers */
-import { newListController } from '../controllers/listController'
+import {
+  newListController,
+  updateListController
+} from '../controllers/listController'
 
 /** middleware */
 import bodyValidatory from '../middlewares/bodyValidatory'
@@ -13,5 +16,10 @@ import { listValidator } from '../validators/listValidator'
 const listRouter = Router()
 
 listRouter.post('/new/list', bodyValidatory(listValidator), newListController)
+listRouter.put(
+  '/update/list/:id',
+  bodyValidatory(listValidator),
+  updateListController
+)
 
 export default listRouter
