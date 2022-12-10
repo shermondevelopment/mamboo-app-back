@@ -66,4 +66,11 @@ describe('List', () => {
       })
     expect(response.statusCode).toBe(422)
   })
+  it('Should call router /delete/list with id who exist and receive status 204', async () => {
+    const createList = await createListFactory()
+    const response = await supertest(app).delete(
+      `/delete/list/${createList._id}`
+    )
+    expect(response.statusCode).toBe(204)
+  })
 })
