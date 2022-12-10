@@ -24,7 +24,7 @@ export const updateListService = async (idOfList: string, title: string) => {
 }
 
 export const deleteListService = async (idOfList: string) => {
-  const listExist = findListRepostiory(idOfList)
+  const listExist = await findListRepostiory(idOfList)
 
   if (!listExist) {
     AppError(404, 'list not exists')

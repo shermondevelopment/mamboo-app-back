@@ -4,6 +4,9 @@ import supertest from 'supertest'
 /** app */
 import app from '../../app/setting/app'
 
+/** uuid */
+import { v4 } from 'uuid'
+
 /** connect with db */
 import connect from '../../app/db/connect'
 import { createListFactory } from '../factories/listFactory'
@@ -72,5 +75,9 @@ describe('List', () => {
       `/delete/list/${createList._id}`
     )
     expect(response.statusCode).toBe(204)
+  })
+  it('Should call router /delete/list with id who not exist and receive status 404', async () => {
+    const response = await supertest(app).delete(`/delete/list/${v4()}`)
+    expect(response.statusCode).toBe(404)
   })
 })
