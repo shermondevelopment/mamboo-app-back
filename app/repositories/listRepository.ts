@@ -16,3 +16,7 @@ export const findListRepostiory = async (idOfList: string) => {
 export const deleteListRepository = async (idOfList: string) => {
   await ListSchema.deleteOne({ _id: idOfList })
 }
+
+export const getListRepository = async () => {
+  return await ListSchema.find()
+}

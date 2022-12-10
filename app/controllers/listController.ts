@@ -4,7 +4,8 @@ import { Request, Response } from 'express'
 import {
   newListService,
   updateListService,
-  deleteListService
+  deleteListService,
+  getListService
 } from '../services/listService'
 
 export const newListController = async (req: Request, res: Response) => {
@@ -25,4 +26,9 @@ export const deleteListController = async (req: Request, res: Response) => {
 
   await deleteListService(id)
   res.sendStatus(204)
+}
+
+export const getListController = async (req: Request, res: Response) => {
+  const list = await getListService()
+  res.status(200).json(list)
 }

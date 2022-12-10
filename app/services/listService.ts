@@ -2,7 +2,8 @@ import {
   addNewListRepository,
   updateListRepository,
   findListRepostiory,
-  deleteListRepository
+  deleteListRepository,
+  getListRepository
 } from '../repositories/listRepository'
 
 /** utils */
@@ -30,4 +31,9 @@ export const deleteListService = async (idOfList: string) => {
   }
 
   await deleteListRepository(idOfList)
+}
+
+export const getListService = async () => {
+  const list = await getListRepository()
+  return list
 }
