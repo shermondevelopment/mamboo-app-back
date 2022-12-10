@@ -30,4 +30,10 @@ describe('List', () => {
     })
     expect(response.statusCode).toBe(422)
   })
+  it('Should call router /new/list not providing property title and receive status 422', async () => {
+    const response = await supertest(app).post('/new/list').send({
+      title: ''
+    })
+    expect(response.statusCode).toBe(422)
+  })
 })
