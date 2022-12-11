@@ -9,7 +9,12 @@ import { v4 } from 'uuid'
 
 /** connect with db */
 import connect from '../../app/db/connect'
+
+/** factory */
 import { createListFactory } from '../factories/listFactory'
+
+/** schema */
+import listSchema from '../../app/schemas/listSchema'
 
 describe('List', () => {
   beforeAll(async () => {
@@ -17,7 +22,7 @@ describe('List', () => {
   })
 
   afterAll(async () => {
-    await (await connect).deleteModel('list')
+    await listSchema.remove().exec()
     await (await connect).disconnect()
   })
 
