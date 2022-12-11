@@ -4,7 +4,8 @@ import { Router } from 'express'
 import {
   newCardController,
   updateCardController,
-  listCardController
+  listCardController,
+  deleteCardController
 } from '../controllers/cardController'
 
 /** middleware */
@@ -25,5 +26,6 @@ cardRouter.put(
   updateCardController
 )
 cardRouter.get('/cards', listCardController)
+cardRouter.delete('/card/:id', deleteCardController)
 
 export default cardRouter

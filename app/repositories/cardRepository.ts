@@ -26,3 +26,7 @@ export const updateCardRepository = async (
 export const findCardToListId = async (list_id: string) => {
   return await cardSchema.find({ list_id })
 }
+
+export const deleteCardRepository = async (card_id: string) => {
+  await cardSchema.deleteOne({ _id: card_id })
+}

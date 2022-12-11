@@ -3,7 +3,8 @@ import {
   addNewCardRepository,
   findCardRepository,
   updateCardRepository,
-  findCardToListId
+  findCardToListId,
+  deleteCardRepository
 } from '../repositories/cardRepository'
 import {
   findListRepostiory,
@@ -58,4 +59,14 @@ export const getCardService = async () => {
   }
 
   return listWithCards
+}
+
+export const deleteCardService = async (card_id: string) => {
+  const cardExits = await findCardRepository(card_id)
+
+  if (!cardExits) {
+    AppError(404, 'card not exist')
+  }
+
+  await deleteCardRepository(card_id)
 }
