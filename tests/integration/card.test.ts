@@ -35,4 +35,13 @@ describe('Card Test', () => {
     expect(response.statusCode).toBe(422)
     expect(response.body).toEqual({ error: 'please enter a content' })
   })
+
+  it('Should call router add new card with uuid invalid and receive status 422', async () => {
+    const response = await supertest(app).post('/card').send({
+      content: 'mock@card',
+      list_id: 'invalid@uuid'
+    })
+    expect(response.statusCode).toBe(422)
+    expect(response.body).toEqual({ error: 'enter a valid uuid' })
+  })
 })
