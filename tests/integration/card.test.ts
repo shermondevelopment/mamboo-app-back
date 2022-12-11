@@ -44,4 +44,12 @@ describe('Card Test', () => {
     expect(response.statusCode).toBe(422)
     expect(response.body).toEqual({ error: 'enter a valid uuid' })
   })
+  it('Should call router add new card with list that does not exist and receive status 422', async () => {
+    const response = await supertest(app).post('/card').send({
+      content: 'mock@card',
+      list_id: v4()
+    })
+    expect(response.statusCode).toBe(404)
+    expect(response.body).toEqual({ error: 'list not exist' })
+  })
 })
