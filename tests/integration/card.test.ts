@@ -10,6 +10,9 @@ import connect from '../../app/db/connect'
 /** factory */
 import { createListFactory } from '../factories/listFactory'
 
+/** uuid */
+import { v4 } from 'uuid'
+
 describe('Card Test', () => {
   beforeAll(async () => {
     await connect
@@ -22,5 +25,14 @@ describe('Card Test', () => {
       list_id: createList._id
     })
     expect(response.statusCode).toBe(201)
+  })
+
+  it('Should call router add new card with content empty and receive status 422', async () => {
+    const response = await supertest(app).post('/card').send({
+      content: '',
+      list_id: v4()
+    })
+    expect(response.statusCode).toBe(422)
+    expect(response.body).toEqual({ error: 'please enter a content' })
   })
 })
