@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/app/server.js",
     "dev": "tsnd --respawn app/server.ts",
     "test": "jest"
   },
